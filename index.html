@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Portfolio</title>
+    <style>
+        :root {
+            --primary: #0f1419;
+            --secondary: #1a2332;
+            --accent: #e8e8e8;
+            --accent-subtle: #8b8b8b;
+            --highlight: #ffffff;
+            --border: #2d3744;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: var(--primary);
+            color: var(--accent);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 2rem 3rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, var(--secondary) 0%, var(--primary) 100%);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .logo {
+            max-width: 120px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInLogo 0.8s ease-out 0.2s forwards;
+        }
+
+        @keyframes fadeInLogo {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            color: var(--highlight);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--accent-subtle);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* Main Container */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Projects Grid */
+        .projects {
+            display: grid;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .project-group {
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-group:nth-child(1) { animation-delay: 0.1s; }
+        .project-group:nth-child(2) { animation-delay: 0.2s; }
+        .project-group:nth-child(3) { animation-delay: 0.3s; }
+        .project-group:nth-child(4) { animation-delay: 0.4s; }
+        .project-group:nth-child(5) { animation-delay: 0.5s; }
+        .project-group:nth-child(6) { animation-delay: 0.6s; }
+
+        .org-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--highlight);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .video-card {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .video-card:hover {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, var(--secondary) 0%, rgba(255, 255, 255, 0.02) 100%);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-iframe-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--primary);
+        }
+
+        .video-iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--highlight);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .video-link {
+            color: var(--accent-subtle);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            transition: color 0.3s;
+            display: inline-block;
+        }
+
+        .video-link:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            header {
+                padding: 2rem 1rem;
+            }
+
+            main {
+                padding: 2rem 1rem;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .project-group {
+                margin-bottom: 2rem;
+            }
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--accent-subtle);
+            font-size: 0.9rem;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-subtle);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://res.cloudinary.com/dvltssfeh/image/upload/v1767042498/BigHouse_K_gwkjgu.jpg" alt="Big House Logo" class="logo">
+        <h1>The Orlando Collection</h1>
+        <p class="subtitle">Big House recent work</p>
+    </header>
+
+    <main>
+        <section class="projects">
+            <!-- Concord Hospital -->
+            <div class="project-group">
+                <h2 class="org-title">Concord Hospital</h2>
+                <div class="videos-grid">
+                    <div class="video-card">
+                        <div class="video-iframe-container">
+                            <iframe src="https://player.vimeo.com/video/1064818742?h=&autoplay=0" allowfullscreen="" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">People are Talking</h3>
+                            <a href="https://vimeo.com/1064818742?fl=tl&fe=ec" target="_blank" class="video-link">Watch on Vimeo →</a>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-iframe-container">
+                            <iframe src="https://player.vimeo.com/video/1032889549?h=&autoplay=0" allowfullscreen="" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">Give it a Shot</h3>
+                            <a href="https://vimeo.com/1032889549?fl=tl&fe=ec" target="_blank" class="video-link">Watch on Vimeo →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- One Local -->
+            <div class="project-group">
+                <h2 class="org-title">One Local</h2>
+                <div class="videos-grid">
+                    <div class="video-card">
+                        <div class="video-iframe-container">
+                            <iframe src="https://player.vimeo.com/video/855467404?h=&autoplay=0" allowfullscreen="" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">Daily Routine</h3>
+                            <a href="https://vimeo.com/855467404?fl=tl&fe=ec" target="_blank" class="video-link">Watch on Vimeo →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cambridge College -->
+            <div class="project-group">
+                <h2 class="org-title">Cambridge College</h2>
+                <div class="videos-grid">
+                    <div class="video-card">
+                        <div class="video-iframe-container">
+                            <iframe src="https://player.vimeo.com/video/913371469?h=&autoplay=0" allowfullscreen="" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">School Days</h3>
+                            <a href="https://vimeo.com/913371469?fl=tl&fe=ec" target="_blank" class="video-link">Watch on Vimeo →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CCSNH -->
+            <div class="project-group">
+                <h2 class="org-title">CCSNH</h2>
+                <div class="videos-grid">
+                    <div class="video-card">
+                        <div class="video-iframe-container">
+                            <iframe src="https://player.vimeo.com/video/841896620?h=&autoplay=0" allowfullscreen="" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">Choose Community</h3>
+                            <a href="https://vimeo.com/841896620?fl=tl&fe=ec" target="_blank" class="video-link">Watch on Vimeo →</a>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-iframe-container">
+                            <iframe src="https://player.vimeo.com/video/885764508?h=&autoplay=0" allowfullscreen="" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">Roll Call</h3>
+                            <a href="https://vimeo.com/885764508?fl=tl&fe=ec" target="_blank" class="video-link">Watch on Vimeo →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Video Portfolio. All rights reserved.</p>
+    </footer>
+</body>
+</html>
